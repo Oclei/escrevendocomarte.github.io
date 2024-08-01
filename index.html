@@ -6,8 +6,13 @@
     <script src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-    <button id="authorize_button" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
+    <div id="g_id_onload"
+         data-client_id="YOUR_CLIENT_ID.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
     <pre id="content"></pre>
 
     <script type="text/javascript">
@@ -19,27 +24,21 @@
 
         function handleCredentialResponse(response) {
             console.log("Encoded JWT ID token: " + response.credential);
-            gapi.load('client', initializeGapiClient);
+            initializeGapiClient(response.credential);
         }
 
-        async function initializeGapiClient() {
-            await gapi.client.init({
-                apiKey: API_KEY,
-                discoveryDocs: DISCOVERY_DOCS,
-            });
+        async function initializeGapiClient(id_token) {
+            await gapi.load('client:auth2', async () => {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: DISCOVERY_DOCS,
+                });
 
-            tokenClient = google.accounts.oauth2.initTokenClient({
-                client_id: CLIENT_ID,
-                scope: SCOPES,
-                callback: async (response) => {
-                    if (response.error !== undefined) {
-                        throw(response);
-                    }
-                    await listFiles();
-                },
-            });
+                const authInstance = gapi.auth2.getAuthInstance();
+                authInstance.setToken({id_token: id_token});
 
-            tokenClient.requestAccessToken({prompt: 'consent'});
+                await listFiles();
+            });
         }
 
         async function listFiles() {
