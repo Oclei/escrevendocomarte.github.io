@@ -4,6 +4,10 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/res
 var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
 var tokenClient;
 
+document.getElementById('login-button').onclick = function() {
+    google.accounts.id.prompt();  // Mostrar a janela de login do Google
+};
+
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
     initializeGapiClient(response.credential);
