@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Gerado</title>
+</head>
+<body>
+    <h1>Documento Gerado</h1>
+    <div id="content">
+        <!-- O conteúdo será inserido aqui -->
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const contentDiv = document.getElementById('content');
+
+            if (urlParams.has('paragrafo1')) {
+                contentDiv.innerHTML += '<p>Este é o conteúdo do Parágrafo 1.</p>';
+            }
+            if (urlParams.has('paragrafo2')) {
+                contentDiv.innerHTML += '<p>Este é o conteúdo do Parágrafo 2.</p>';
+            }
+            if (urlParams.has('paragrafo3')) {
+                contentDiv.innerHTML += '<p>Este é o conteúdo do Parágrafo 3.</p>';
+            }
+        };
+    </script>
+</body>
+</html>

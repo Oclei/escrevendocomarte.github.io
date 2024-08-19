@@ -1,12 +1,31 @@
 ﻿var CLIENT_ID = '20280479489-c2cjulucpu4ck7lj32v74ou0753tsc1v.apps.googleusercontent.com';
+//var CLIENT_ID = 'just-rhythm-431117-i2';
+
+
+//"client_id": "113950500912407040837",
+//var CLIENT_ID = '113950500912407040837';
+//var CLIENT_ID = '20280479489-c2cjulucpu4ck7lj32v74ou0753tsc1v';
+//var CLIENT_ID = '20280479489-c2cjulucpu4ck7lj32v74ou0753tsc1v';
 var API_KEY = 'AIzaSyDkF9VxxCVWUuIxYhqUnAWXcGWDsfd1hH4';
+var API_KEY = 'AIzaSyC2dgj6ECs5kvqYxLWX6av38-nnOHb3F60';
+var API_KEY = 'a0722507985af5e52a33f8fa4b1a34f9b08deb20';
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
-var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+//var SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+var SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 var tokenClient;
 
 document.getElementById('login-button').onclick = function() {
     google.accounts.id.prompt();  // Mostrar a janela de login do Google
 };
+
+window.onload = function () {
+    google.accounts.id.initialize({
+      client_id: 'YOUR_GOOGLE_CLIENT_ID',
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt();
+  };
+  
 
 function handleCredentialResponse(response) {
     console.log("Encoded JWT ID token: " + response.credential);
@@ -47,4 +66,43 @@ async function listFiles() {
         (str, file) => `${str}${file.name} (${file.id})\n`,
         'Files:\n');
     document.getElementById('content').innerText = output;
+}
+
+document.getElementById('document-icon').onclick = function() {
+    document.getElementById('modal').style.display = "block";
+};
+
+document.querySelector('.close').onclick = function() {
+    document.getElementById('modal').style.display = "none";
+};
+
+document.getElementById('cancel-button').onclick = function() {
+    document.getElementById('modal').style.display = "none";
+};
+
+document.getElementById('ok-button').onclick = function() {
+    const checkboxes = document.querySelectorAll('#selection-form input[type="checkbox"]:checked');
+    let selectedParagraphs = [];
+    
+    checkboxes.forEach((checkbox) => {
+        selectedParagraphs.push(checkbox.value);
+    });
+
+    if (selectedParagraphs.length > 0) {
+        const url = generateDocumentURL(selectedParagraphs);
+        window.open(url, '_blank');
+    }
+
+    document.getElementById('modal').style.display = "none";
+};
+
+function generateDocumentURL(paragraphs) {
+    let url = 'documento.html?';
+    paragraphs.forEach((paragraph, index) => {
+        if (index > 0) {
+            url += '&';
+        }
+        url += `paragrafo${paragraph}=${paragraph}`;
+    });
+    return url;
 }

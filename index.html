@@ -1,14 +1,22 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Google Sign-In Example</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta charset="UTF-8">
+    <title>Escrevendo com Arte</title>
+    <!-- <meta name="google-site-verification" content="xELiJBjUsUXgdWYSzCGPm3RwJF7J3uVsEZRdvzUddyI" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">    
+    <script src="https://accounts.google.com/gsi/client" async></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Bem-vindo ao Escrevendo com Arte</h1>
+    <!--     
+    <button id="login-button">Fazer login com o Google</button>
+    <h1> onclick="login()">Login with idp.example</h1>
+    <pre id="content"></pre>
+    
     <div id="g_id_onload"
          data-client_id="YOUR_REAL_CLIENT_ID.apps.googleusercontent.com"
          data-context="signin"
@@ -16,6 +24,25 @@
          data-callback="handleCredentialResponse">
     </div>
     <div class="g_id_signin" data-type="standard"></div>
-    <pre id="content"></pre>
+     -->
+     <div id="document-icon">📄</div>
+
+     <!-- O Modal -->
+     <div id="modal">
+         <div id="modal-content">
+             <span class="close">&times;</span>
+             <h2>Selecione os parágrafos para inserir</h2>
+             <form id="selection-form">
+                 <input type="checkbox" id="paragrafo1" name="paragrafo1" value="1">
+                 <label for="paragrafo1">Parágrafo 1</label><br>
+                 <input type="checkbox" id="paragrafo2" name="paragrafo2" value="2">
+                 <label for="paragrafo2">Parágrafo 2</label><br>
+                 <input type="checkbox" id="paragrafo3" name="paragrafo3" value="3">
+                 <label for="paragrafo3">Parágrafo 3</label><br>
+                 <button type="button" id="ok-button">OK</button>
+                 <button type="button" id="cancel-button">Cancelar</button>
+             </form>
+         </div>
+     </div>
 </body>
 </html>
