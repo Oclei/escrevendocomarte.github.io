@@ -1,25 +1,4 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    text-align: center;
-    padding: 20px;
-}
-
-#g_id_onload, .g_id_signin {
-    margin: 20px auto;
-}
-
-pre {
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: left;
-    white-space: pre-wrap;
-}
-
-/* Estilos básicos */
+﻿/* Estilos básicos */
 #document-icon {
     cursor: pointer;
     font-size: 24px;
