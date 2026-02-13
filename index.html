@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">    
     <script src="https://accounts.google.com/gsi/client" async></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="script.js" defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>    
+    <!--<script src="script.js" defer></script>-->
 </head>
 <body>
     <h1>Bem-vindo ao Escrevendo com Arte</h1>
@@ -33,10 +33,11 @@
              <span class="close">&times;</span>
              <h2>Selecione os parágrafos para inserir</h2>
              <form id="selection-form">
-                 <input type="checkbox" id="paragrafo1" name="paragrafo1" value="1">
-                 <label for="paragrafo1">Parágrafo 1</label><br>
-                 <input type="checkbox" id="paragrafo2" name="paragrafo2" value="2">
-                 <label for="paragrafo2">Parágrafo 2</label><br>
+                <input type="checkbox" id="intimar_autor" name="intimar_autor">
+                <label for="intimar_autor">Intimar Autor (despacho.js)</label><br>
+                <input type="checkbox" id="intimar_reu" name="intimar_reu">
+                <label for="intimar_reu">Intimar Réu (decisao.js)</label><br>
+                <!-- Outras caixas de seleção -->
                  <input type="checkbox" id="paragrafo3" name="paragrafo3" value="3">
                  <label for="paragrafo3">Parágrafo 3</label><br>
                  <button type="button" id="ok-button">OK</button>
@@ -44,6 +45,6 @@
              </form>
          </div>
      </div>
-<script src="scripts.js"></script>
+<script src="scripts.js" defer></script>
 </body>
 </html>
