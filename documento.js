@@ -1,0 +1,72 @@
+﻿// Variáveis globais que serão usadas no conteúdo
+        const cpc = 'Código de Processo Civil – CPC';
+        const local = 'Barreiras/BA';
+        const usuario = 'Oclei Alves da Silva';
+        const funcao = 'JUIZ DE DIREITO';
+        const conclusao = 'promova-se nova conclusão';
+        const lei_9099 = 'Lei nº 9.099/95';
+
+        // Objeto contendo os parágrafos e seu conteúdo dinâmico
+        const variaveis = {
+            intimar_autor: {
+                teor: `
+                    Intime-se o(a) Autor(a) para emendar a Inicial, no prazo dos 15 (quinze) dias previstos no art. 321 do {cpc}, sob pena de seu indeferimento, apresentando histórico dos pagamentos já realizados e planilha de cálculo com a demonstração dos valores que entende ter pago a maior.
+        
+                    Afinal, o pedido deve ser certo e determinado (artigos 322 e 324, ambos do {cpc}). Além disso, no presente procedimento, não se admite a eventual condenação por quantia ilíquida (art. 38, parágrafo único, da {lei_9099}).
+                `
+            },
+            intimar_reu: {
+                teor: `
+                    Após, intime-se o(a) Réu para eventual manifestação, no prazo dos 15 (quinze) dias.
+        
+                    Decorrido o prazo acima, independentemente de manifestação, <i><b>{conclusao}</b></i>, para fins de prosseguimento do processo.
+                `
+            },
+            paragrafo3: {
+                teor: `
+                    Este é o conteúdo do Parágrafo 3.
+                `
+            }
+            // Adicione outros parágrafos conforme necessário
+        };
+        
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const contentDiv = document.getElementById('content');
+            let documento = '';
+        
+            // Verificar o que está sendo capturado nos parâmetros da URL
+            console.log("Parâmetros capturados:", Array.from(urlParams.entries()));
+        
+            urlParams.forEach((value, key) => {
+                if (variaveis[key]) {
+                    let texto = variaveis[key].teor;
+                    console.log(`Processando ${key}: ${texto}`);
+                    // Substituir as variáveis dinâmicas no texto
+                    texto = texto.replace('{cpc}', cpc);
+                    texto = texto.replace('{lei_9099}', lei_9099);
+                    texto = texto.replace('{conclusao}', conclusao);
+        
+                    documento += `<p style="text-indent: 3cm; margin-top: 0.3cm; margin-bottom: 0cm; line-height: 150%" align="justify">
+                    <font style="font-size: 13pt" size="3" face="Times New Roman">
+                    <font color="#000000"><span style="font-weight: normal">${texto}</span></font></font></p>`;
+                } else {
+                    console.log(`Parágrafo ${key} não encontrado nas variáveis.`);
+                }
+            });
+        
+            // Adicionar a assinatura ao final do documento
+            const dataAtual = new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
+            documento += `
+                <p style="text-indent: 3cm; margin-top: 0.3cm; margin-bottom: 0cm; line-height: 150%" align="justify"> ${local}, ${dataAtual}.</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p style="text-indent: 3cm; margin-top: 0.3cm; margin-bottom: 0cm; line-height: 150%" align="justify">${usuario}</p>
+                <p style="text-indent: 3cm; margin-top: 0.3cm; margin-bottom: 0cm; line-height: 150%" align="justify">${funcao}</p>
+            `;
+        
+            // Inserir o conteúdo no div
+            contentDiv.innerHTML = documento;
+        };
+        
