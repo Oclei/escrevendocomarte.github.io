@@ -1,7 +1,80 @@
 ﻿/* Estilos básicos */
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13pt;
+    color: #000;
+}
+
 h1 {
     text-align: center;
+    margin: 0 0 24px 0;
+    font-size: 26pt;
+    font-weight: bold;
 }
+
+.pagina {
+width: 21cm;
+min-height: 29.7cm;
+margin: 2cm auto;
+background: white;
+padding-top: 2cm;
+padding-bottom: 2cm;
+box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.brasao {
+    width: 2.8cm;
+    height: auto;
+    display: block;
+    margin: 0 auto 6px auto;
+}
+.cabecalho{
+  text-align: center;
+  margin-bottom: 1.2cm;
+  padding-bottom: 0.5cm;
+  border-bottom: 1px solid #000;
+}
+
+.cab-l1, .cab-l2, .cab-l3{
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 1.2;
+}
+
+.cab-l4, .cab-l5{
+  font-weight: 400;
+  font-size: 10.5pt;
+  line-height: 1.2;
+}
+
+#titulo{
+  text-align: center;
+  margin: 1.2cm 0 1.6cm 0;
+}
+
+.paragrafo {
+    text-indent: 3cm;
+    margin-top: 0.3cm;
+    margin-bottom: 0;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    line-height: 150%;
+    text-align: justify;
+}
+
+.data-local {
+    text-indent: 3cm;
+    margin-top: 0.3cm;
+    margin-left: 1cm; /* mesmo recuo dos parágrafos */
+    margin-right: 1cm;
+    text-align: justify;
+}
+
+.assinatura {
+    margin-top: 60px;
+    text-align: center;
+}
+
 #document-icon {
     cursor: pointer;
     font-size: 36px;
@@ -35,4 +108,12 @@ h1 {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media print{
+  body{ background: white; }
+  .pagina{
+    box-shadow: none;
+    margin: 0;
+  }
 }
