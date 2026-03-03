@@ -48,7 +48,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const contentDiv = document.getElementById('content');
 if (!contentDiv) return;
 
-const ato = (urlParams.get('ato') || 'DOCUMENTO').toUpperCase();
+const ato = (urlParams.get('ato') || 'DECISÃO').toUpperCase();
 const h1 = document.getElementById('titulo');
 if (h1) h1.textContent = ato;
 document.title = ato;
