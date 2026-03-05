@@ -4,13 +4,21 @@
 3000–3999: criminal
 4000–4999: eleitoral
 */
-export const constantes = Object.freeze({
-    cpc: "CPC",
-    lei_9099: "Lei 9.099/95",
-    conclusao: "Conclusão"
-});
-
 export const variaveis = Object.freeze({
-    // exemplo:
-    // modelo_eleitoral_1: { indice: 1000, teor: "Texto..." }
+
+intimar_MPE_alegacoes_finais: {
+indice: 4010,
+teor: `Intime-se o Ministério Público Eleitoral para apresentar alegações finais.`
+},
+
+intimar_impugnado_alegacoes_finais: {
+indice: 4020,
+teor: `Em seguida, intime-se o Impugnado, para a mesma finalidade.`
+},
+
+conclusao_julgamento_eleitoral: {
+indice: 4030,
+teor: `Após, promova-se a conclusão, para fins de julgamento.`
+}
+
 });

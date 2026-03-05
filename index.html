@@ -1,54 +1,41 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Escrevendo com Arte</title>
-    <!-- <meta name="google-site-verification" content="xELiJBjUsUXgdWYSzCGPm3RwJF7J3uVsEZRdvzUddyI" /> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/base.css">
-    <script src="https://accounts.google.com/gsi/client" async></script>
-    <script src="https://apis.google.com/js/api.js"></script>
-</head>
-
-<body>
-    <h1>BEM-VINDO AO ESCREVENDO COM ARTE</h1>
-
-    <div class="base-card document-icon" data-base="civel">
-    <div class="icone">📄</div>
-    <div class="titulo-base">Cível</div>
-</div>
-
-    <div class="base-card document-icon" data-base="crime">
-        <div class="icone">📄</div>
-        <div class="titulo-base">Criminal</div>
-    </div>
-
-    <div class="base-card document-icon" data-base="eleitoral">
-        <div class="icone">📄</div>
-        <div class="titulo-base">Eleitoral</div>
-    </div>
-
-    <div id="modal">
-        <div id="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modal-titulo">Selecione os parágrafos para inserir</h2>
-
-            <form id="selection-form">
-                <input type="checkbox" id="intimar_autor" name="intimar_autor">
-                <label for="intimar_autor">Intimar Autor</label><br>
-
-                <input type="checkbox" id="intimar_reu" name="intimar_reu">
-                <label for="intimar_reu">Intimar Réu</label><br>
-
-                <input type="checkbox" id="paragrafo3" name="paragrafo3" value="3">
-                <label for="paragrafo3">Parágrafo 3</label><br>
-
-                <button type="button" id="ok-button">OK</button>
-                <button type="button" id="cancel-button">Cancelar</button>
-            </form>
+    <head> <meta charset="UTF-8">
+        <title>Escrevendo com Arte</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/base.css">
+        <script src="https://accounts.google.com/gsi/client" async></script>
+        <script src="https://apis.google.com/js/api.js"></script>
+    </head>
+    
+    <body>
+        <h1>BEM-VINDO AO ESCREVENDO COM ARTE</h1>
+        <div class="base-card document-icon" data-base="civel">
+            <div class="icone">📄</div>
+            <div class="titulo-base">Cível</div>
         </div>
-    </div>
+        
+        <div class="base-card document-icon" data-base="criminal">
+            <div class="icone">📄</div>
+            <div class="titulo-base">Criminal</div>
+        </div>
 
-    <script src="scripts.js" defer></script>
-</body>
-</html>
+        <div class="base-card document-icon" data-base="eleitoral">
+            <div class="icone">📄</div>
+            <div class="titulo-base">Eleitoral</div>
+        </div>
+        
+        <div id="modal">
+            <div id="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-titulo">Selecione os parágrafos para inserir</h2>
+                <form id="selection-form">
+                    <div id="opcoes-container"></div>
+                    <button type="button" id="ok-button">OK</button>
+                    <button type="button" id="cancel-button">Cancelar</button>
+                </form>
+            </div>
+        </div>
+        
+        <script src="scripts.js" defer></script>
+    </body> </html>

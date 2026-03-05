@@ -5,6 +5,8 @@
 4000–4999: eleitoral
 */
 
+import { constantes } from './global.js';
+export { constantes };
 export const variaveis = Object.freeze({
 
 intimar_MP: {
@@ -13,12 +15,12 @@ teor: `Intime-se o Ministério Público para eventual apresentação de proposta
 },
 
 designar_audiencia_preliminar: {
-indice: 2020,
+indice: 3020,
 teor: `Apresentada proposta de transação penal, designe-se audiência preliminar, adotando-se as providências necessárias.`
 },
 
 conclusao_homologar_transacao: {
-indice: 2030,
+indice: 3030,
 teor: `Obtida a transação penal e uma vez cumprida, promova-se a conclusão, para fins de homologação.`
 }
 

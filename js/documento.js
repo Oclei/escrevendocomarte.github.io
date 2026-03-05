@@ -4,92 +4,116 @@ const DEBUG = false;
 function log(...args) { if (DEBUG) console.log(...args); }
 
 function obterParamUrl(nome) {
-    const url = new URL(window.location.href);
-    return (url.searchParams.get(nome) || "").trim();
+const url = new URL(window.location.href);
+return (url.searchParams.get(nome) || "").trim();
 }
 
 function normalizarListaCsv(valor) {
-    return valor
-        .split(",")
-        .map(s => s.trim())
-        .filter(Boolean);
+return valor
+.split(",")
+.map(s => s.trim())
+.filter(Boolean);
 }
 
 function substituirPlaceholders(texto, constantes) {
-    if (!texto) return "";
-    let out = texto;
+if (!texto) return "";
+let out = texto;
 
-    if (constantes && typeof constantes === "object") {
-        for (const chave of Object.keys(constantes)) {
-            const marcador = "{" + chave + "}";
-            out = out.split(marcador).join(String(constantes[chave]));
-        }
+if (constantes && typeof constantes === "object") {
+    for (const chave of Object.keys(constantes)) {
+        const marcador = "{" + chave + "}";
+        out = out.split(marcador).join(String(constantes[chave]));
     }
-    return out;
+}
+return out;
+
 }
 
 function montarParagrafosHtml(texto) {
-    const partes = texto
-        .replace(/\r\n/g, "\n")
-        .trim()
-        .split(/\n\s*\n/);
+const partes = texto
+.replace(/\r\n/g, "\n")
+.trim()
+.split(/\n\s*\n/);
 
-    return partes
-        .map(parte => `<p class="paragrafo">${parte.trim()}</p>`)
-        .join("");
+return partes
+    .map(parte => `<p class="paragrafo">${parte.trim()}</p>`)
+    .join("");
+
 }
 
 function ordenarPorIndice(itens) {
-    return itens.sort((a, b) => {
-        const ia = Number(a.indice ?? 0);
-        const ib = Number(b.indice ?? 0);
-        if (ia < ib) return -1;
-        if (ia > ib) return 1;
-        return 0;
-    });
+return itens.sort((a, b) => {
+const ia = Number(a.indice ?? 0);
+const ib = Number(b.indice ?? 0);
+if (ia < ib) return -1;
+if (ia > ib) return 1;
+return 0;
+});
 }
 
 function formatarDataPorExtenso(data) {
-    const dia = data.getDate();
+    const d = data.getDate();
     const mes = data.toLocaleString("pt-BR", { month: "long" });
     const ano = data.getFullYear();
-    return `${dia} de ${mes} de ${ano}`;
+    
+    let diaFmt = "";
+    if (d === 1) {
+        diaFmt = "1º";
+    } else if (d >= 2 && d <= 9) {
+        diaFmt = String(d).padStart(2, "0");
+    } else {
+        diaFmt = String(d);
+    }
+    
+    return `${diaFmt} de ${mes} de ${ano}`;
 }
 
-function montarBlocoFinal(constantes) {
-    const local = constantes.local || "Local";
-    const usuario = constantes.usuario || "";
-    const funcao = constantes.funcao || "";
+function montarBlocoAssinatura(constantes) {
+const local = constantes.local || "Local";
+const usuario = constantes.usuario || "";
+const funcao = constantes.funcao || "";
 
-    const dataExtenso = formatarDataPorExtenso(new Date());
+const dataExtenso = formatarDataPorExtenso(new Date());
 
-    const htmlData = `<p class="data-local">${local}, ${dataExtenso}.</p>`;
+const htmlData = `<p class="data-local">${local}, ${dataExtenso}.</p>`;
 
-    const htmlAss = `
-        <div class="assinatura">
-            <p>${usuario}</p>
-            <p>${funcao}</p>
-        </div>
-    `.trim();
+const htmlAss = `
+    <div class="assinatura">
+        <p>${usuario}</p>
+        <p>${funcao}</p>
+    </div>
+`.trim();
 
-    return htmlData + htmlAss;
+return htmlData + htmlAss;
+
 }
 
-function renderizar(html) {
-    const conteudo = document.getElementById("conteudo");
-    if (conteudo) conteudo.innerHTML = html;
+function renderizarCorpo(html) {
+const conteudo = document.getElementById("conteudo");
+if (conteudo) conteudo.innerHTML = html;
+}
+
+function renderizarAssinatura(html) {
+const assinatura = document.getElementById("assinatura");
+if (assinatura) assinatura.innerHTML = html;
+}
+
+function renderizarErro(mensagem) {
+const conteudo = document.getElementById("conteudo");
+if (conteudo) conteudo.innerHTML = `<p class="paragrafo">ERRO: ${mensagem}</p>`;
 }
 
 async function carregarBancoPorBase(base) {
-    if (base === "civel") return await import("./banco/civel.js");
-    if (base === "crime") return await import("./banco/crime.js");
-    if (base === "eleitoral") return await import("./banco/eleitoral.js");
-    return await import("./banco/civel.js");
+if (base === "civel") return await import("./banco/civel.js");
+if (base === "crime" || base === "criminal") return await import("./banco/criminal.js");
+if (base === "eleitoral") return await import("./banco/eleitoral.js");
+return await import("./banco/civel.js");
 }
 
 (async function main() {
-    const base = (obterParamUrl("base") || "civel").toLowerCase();
-    const selecoes = normalizarListaCsv(obterParamUrl("selecoes"));
+try {
+const base = (obterParamUrl("base") || "civel").toLowerCase();
+const selecoes = normalizarListaCsv(obterParamUrl("selecoes"));
 
     log("Base:", base);
     log("Seleções:", selecoes);
@@ -125,7 +149,11 @@ async function carregarBancoPorBase(base) {
     const ordenados = ordenarPorIndice(blocos);
     const htmlCorpo = ordenados.map(x => x.html).join("");
 
-    const htmlFinal = htmlCorpo + montarBlocoFinal(constantes);
+    renderizarCorpo(htmlCorpo);
+    renderizarAssinatura(montarBlocoAssinatura(constantes));
+} catch (e) {
+    console.error(e);
+    renderizarErro(e && e.message ? e.message : String(e));
+}
 
-    renderizar(htmlFinal);
 })();
