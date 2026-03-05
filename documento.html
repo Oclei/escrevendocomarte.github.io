@@ -2,25 +2,28 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <title>Documento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documento Gerado</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/documento.css">
 </head>
 
-<body>    
-    <div class="pagina">
-        <div class="cabecalho"> <img src="./img/brasao_tjba.png" class="brasao" alt="Brasão do TJBA">    
-            <div class="cab-l1">PODER JUDICIÁRIO DO ESTADO DA BAHIA</div>
-            <div class="cab-l2">COMARCA DE BARREIRAS</div>
-            <div class="cab-l3">1ª VARA DO SISTEMA DOS JUIZADOS ESPECIAIS</div>
-            <div class="cab-l4">Avenida Benedita Silveira, nº 201, Centro – Barreiras/BA</div>
-            <div class="cab-l5">CEP 47800-000 – Telefone: (77) 3611-8706 / 3611-3785 – <i>E-mail: barreiras-1vsj@tjba.jus.br</i></div>
+<body>
+    <div class="pagina" id="pagina">
+        <div class="cabecalho" id="cabecalho">
+            <img class="brasao" src="img/brasao_tjba.png" alt="Brasão TJBA">
+            <div class="cab-l1">TRIBUNAL DE JUSTIÇA DO ESTADO DA BAHIA</div>
+            <div class="cab-l2">PODER JUDICIÁRIO</div>
+            <div class="cab-l3">COMARCA DE BARREIRAS</div>
+            <div class="cab-l4">1ª VARA DO SISTEMA DOS JUIZADOS ESPECIAIS</div>
+            <div class="cab-l5">ESCREVENDO COM ARTE</div>
         </div>
-        <h1 id="titulo">Documento Gerado</h1>
-        <div id="content">
-        <!-- O conteúdo será inserido aqui -->
-    </div> </div>
 
-    <script type="module" src="js/documento.js"></script> 
+        <div id="titulo"></div>
+        <div id="conteudo"></div>
+        <div id="assinatura"></div>
+    </div>
+
+    <script type="module" src="js/documento.js"></script>
 </body>
 </html>

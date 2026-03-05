@@ -5,46 +5,50 @@
     <title>Escrevendo com Arte</title>
     <!-- <meta name="google-site-verification" content="xELiJBjUsUXgdWYSzCGPm3RwJF7J3uVsEZRdvzUddyI" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="css/base.css">
     <script src="https://accounts.google.com/gsi/client" async></script>
-    <script src="https://apis.google.com/js/api.js"></script>    
-    <!--<script src="script.js" defer></script>-->
+    <script src="https://apis.google.com/js/api.js"></script>
 </head>
-<body>
-    <h1>Bem-vindo ao Escrevendo com Arte</h1>
-    <!--     
-    <button id="login-button">Fazer login com o Google</button>
-    <h1> onclick="login()">Login with idp.example</h1>
-    <pre id="content"></pre>
-    
-    <div id="g_id_onload"
-         data-client_id="YOUR_REAL_CLIENT_ID.apps.googleusercontent.com"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="handleCredentialResponse"> 
-    </div>
-    <div class="g_id_signin" data-type="standard"></div>
-     -->
-     <div id="document-icon">📄</div>
 
-     <!-- O Modal -->
-     <div id="modal">
-         <div id="modal-content">
-             <span class="close">&times;</span>
-             <h2>Selecione os parágrafos para inserir</h2>
-             <form id="selection-form">
+<body>
+    <h1>BEM-VINDO AO ESCREVENDO COM ARTE</h1>
+
+    <div class="base-card document-icon" data-base="civel">
+    <div class="icone">📄</div>
+    <div class="titulo-base">Cível</div>
+</div>
+
+    <div class="base-card document-icon" data-base="crime">
+        <div class="icone">📄</div>
+        <div class="titulo-base">Criminal</div>
+    </div>
+
+    <div class="base-card document-icon" data-base="eleitoral">
+        <div class="icone">📄</div>
+        <div class="titulo-base">Eleitoral</div>
+    </div>
+
+    <div id="modal">
+        <div id="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-titulo">Selecione os parágrafos para inserir</h2>
+
+            <form id="selection-form">
                 <input type="checkbox" id="intimar_autor" name="intimar_autor">
-                <label for="intimar_autor">Intimar Autor (despacho.js)</label><br>
+                <label for="intimar_autor">Intimar Autor</label><br>
+
                 <input type="checkbox" id="intimar_reu" name="intimar_reu">
-                <label for="intimar_reu">Intimar Réu (decisao.js)</label><br>
-                <!-- Outras caixas de seleção -->
-                 <input type="checkbox" id="paragrafo3" name="paragrafo3" value="3">
-                 <label for="paragrafo3">Parágrafo 3</label><br>
-                 <button type="button" id="ok-button">OK</button>
-                 <button type="button" id="cancel-button">Cancelar</button>
-             </form>
-         </div>
-     </div>
-<script src="scripts.js" defer></script>
+                <label for="intimar_reu">Intimar Réu</label><br>
+
+                <input type="checkbox" id="paragrafo3" name="paragrafo3" value="3">
+                <label for="paragrafo3">Parágrafo 3</label><br>
+
+                <button type="button" id="ok-button">OK</button>
+                <button type="button" id="cancel-button">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js" defer></script>
 </body>
 </html>

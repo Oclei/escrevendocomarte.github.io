@@ -1,41 +1,81 @@
-﻿document.getElementById('document-icon').onclick = function() {
-    document.getElementById('modal').style.display = "block";
-};
+﻿"use strict";
 
-document.querySelector('.close').onclick = function() {
-    document.getElementById('modal').style.display = "none";
-};
+let baseSelecionada = null;
 
-document.getElementById('cancel-button').onclick = function() {
-    document.getElementById('modal').style.display = "none";
-};
+function abrirModalParaBase(base) {
+    baseSelecionada = base;
 
+    const modal = document.getElementById("modal");
+    const titulo = document.getElementById("modal-titulo");
 
+    if (titulo) {
+        const nome = base === "civel" ? "Cível" : (base === "crime" ? "Criminal" : "Eleitoral");
+        titulo.textContent = "Selecione os parágrafos para inserir (" + nome + ")";
+    }
 
-document.getElementById('ok-button').addEventListener('click', function() {
-    const form = document.getElementById('selection-form');
-    const urlParams = new URLSearchParams();
-
-    // Itera sobre todas as checkboxes do formulário
-    form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        if (checkbox.checked) {
-            // Adiciona os parâmetros à URL se a checkbox estiver marcada
-            urlParams.append(checkbox.name, checkbox.value);
-        }
-    });
-
-    // Redirecionar para documento.html com os parâmetros da URL em uma nova aba
-    const url = `documento.html?${urlParams.toString()}`;
-    window.open(url, '_blank');  // Abre em nova aba
-});
-
-function generateDocumentURL(paragraphs) {
-    let url = 'documento.html?';
-    paragraphs.forEach((paragraph, index) => {
-        if (index > 0) {
-            url += '&';
-        }
-        url += `paragrafo${paragraph}=${paragraph}`;
-    });
-    return url;
+    modal.style.display = "block";
 }
+
+function fecharModal() {
+    const modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+
+function coletarSelecoes() {
+    const form = document.getElementById("selection-form");
+    const selecionados = [];
+    const inputs = form.querySelectorAll("input[type='checkbox']");
+
+    inputs.forEach((ck) => {
+        if (ck.checked) selecionados.push(ck.name);
+    });
+
+    return selecionados;
+}
+
+function abrirDocumentoEmNovaAba(base, selecoes) {
+    const params = new URLSearchParams();
+    params.set("base", base);
+    params.set("selecoes", selecoes.join(","));
+
+    const url = "documento.html?" + params.toString();
+    window.open(url, "_blank");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const icones = document.querySelectorAll(".document-icon");
+    icones.forEach((el) => {
+        el.addEventListener("click", () => {
+            const base = el.getAttribute("data-base");
+            abrirModalParaBase(base);
+        });
+    });
+
+    const btnOk = document.getElementById("ok-button");
+    const btnCancel = document.getElementById("cancel-button");
+    const btnClose = document.querySelector("#modal-content .close");
+
+    btnOk.addEventListener("click", () => {
+        if (!baseSelecionada) return;
+
+        const selecoes = coletarSelecoes();
+        fecharModal();
+
+        if (selecoes.length === 0) return;
+
+        abrirDocumentoEmNovaAba(baseSelecionada, selecoes);
+    });
+
+    btnCancel.addEventListener("click", () => {
+        fecharModal();
+    });
+
+    btnClose.addEventListener("click", () => {
+        fecharModal();
+    });
+
+    window.addEventListener("click", (event) => {
+        const modal = document.getElementById("modal");
+        if (event.target === modal) fecharModal();
+    });
+});
