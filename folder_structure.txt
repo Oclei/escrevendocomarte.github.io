@@ -1,0 +1,24 @@
+.gitignore
+CNAME
+css/
+  base.css
+  documento.css
+decisao.js
+despacho.js
+documento.html
+img/
+  brasao_tjba.png
+  fundo.jpg
+index.html
+js/
+  banco/
+    civel.js
+    criminal.js
+    eleitoral.js
+    global.js
+  documento.js
+rascunho.html
+README.md
+scripts.js
+sentenca.js
+servidor.js
