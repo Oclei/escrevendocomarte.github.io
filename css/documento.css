@@ -1,4 +1,11 @@
-﻿
+﻿/*
+font-weight: 700;
+100 – muito fino
+400 – normal
+700 – negrito
+900 – extra negrito
+*/
+
 .pagina {
 width: 21cm;
 min-height: 29.7cm;
@@ -23,7 +30,7 @@ box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
 .cab-l1, .cab-l2, .cab-l3{
-  font-weight: 700;
+  font-weight: 400;
   font-size: 12pt;
   line-height: 1.2;
 }
@@ -32,6 +39,10 @@ box-shadow: 0 0 10px rgba(0,0,0,0.15);
   font-weight: 400;
   font-size: 10.5pt;
   line-height: 1.2;
+}
+
+.cab-l4,.cab-l5, .cab-l6 {
+  font-style: italic;
 }
 
 #titulo{
@@ -60,6 +71,7 @@ box-shadow: 0 0 10px rgba(0,0,0,0.15);
 .assinatura {
     margin-top: 60px;
     text-align: center;
+    line-height: 0.3;
 }
 
 @media print{
@@ -69,3 +81,4 @@ box-shadow: 0 0 10px rgba(0,0,0,0.15);
     margin: 0;
   }
 }
+
